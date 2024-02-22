@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3216033205544684107}
   - component: {fileID: 4396161614186810782}
   - component: {fileID: 2159880366983423590}
+  - component: {fileID: -7993721134670989452}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -97,7 +98,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 3579892085340479879}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -112,7 +113,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &4396161614186810782
 CircleCollider2D:
@@ -163,3 +164,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   rb: {fileID: 0}
+--- !u!114 &-7993721134670989452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3579892085340479879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bc8d16b6a05a74886beca9cb3bafae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoint: 4

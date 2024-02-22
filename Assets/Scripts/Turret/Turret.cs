@@ -9,14 +9,18 @@ public class NewBehaviourScript : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private Transform turrentRotationPoint;
     [SerializeField] LayerMask enemyMask;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firingPoint;
 
     [Header("atrribute")]
     [SerializeField] private float targetingRange = 3f;
     [SerializeField] private float rotationSpeed = 50f;
+    [SerializeField] private float fireRate = 1f; // bullets per second
+
     // Start is called before the first frame update
 
     private Transform target;
-
+    private float TimeUntllFire;
 
 
     void Start()
@@ -37,6 +41,14 @@ public class NewBehaviourScript : MonoBehaviour
         if(!CheckTargeRange())
         {
             target = null;
+        }else{
+            TimeUntllFire += Time.deltaTime;
+
+            if(TimeUntllFire >= 1f / fireRate)
+            {
+                Shoot();
+                TimeUntllFire = 0;
+            }
         }
     }
 
@@ -98,6 +110,12 @@ public class NewBehaviourScript : MonoBehaviour
     }
   
 
+    private void Shoot()
+    {
+        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
+        Bullet bulletScript = bulletObj.GetComponent<Bullet>();
+        bulletScript.SetTarget(target);
+    }
 
     private void OnDrawGizmosSelected()
     {
