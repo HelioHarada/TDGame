@@ -20,6 +20,12 @@ public class Bullet : MonoBehaviour
         target = _target;
     }
 
+    public void SetBulletConfig(float speed, int dmg)
+    {
+        bulletSpeed = speed;
+        bulletDmg = dmg;
+    }
+
     private void FixedUpdate()
     {
         if(!target) return;

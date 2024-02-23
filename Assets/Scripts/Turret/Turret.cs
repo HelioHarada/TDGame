@@ -114,6 +114,8 @@ public class NewBehaviourScript : MonoBehaviour
     {
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
         Bullet bulletScript = bulletObj.GetComponent<Bullet>();
+        // Config bullet
+        // bulletScript.SetBulletConfig(20f, 5);
         bulletScript.SetTarget(target);
     }
 
