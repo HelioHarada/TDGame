@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class ShowRange : MonoBehaviour
 {
-    public Color circleColor = Color.green;
+    public Color circleColor = Color.blue;
     public float targetingRange = 1.0f;
     public int numSegments = 64;
 
     private LineRenderer lineRenderer;
 
-    void Start(){
-        // Criar um novo objeto LineRenderer
+    void Awake()
+    {
         lineRenderer = gameObject.AddComponent<LineRenderer>();
 
         // Definir a cor do círculo
-        lineRenderer.startColor = circleColor;
-        lineRenderer.endColor = circleColor;
+        
 
         // Definir a largura da linha
         lineRenderer.startWidth = 0.1f;
@@ -27,20 +26,19 @@ public class ShowRange : MonoBehaviour
     }
 
 
-    void Update()
-    {
-        
-    }
-
     // Função para desenhar um círculo com um centro, raio e número de segmentos dados
     public void DrawCircle(Vector3 center, float radius, int segments = 64)
     {
+ 
         lineRenderer.positionCount = segments + 1;
+        lineRenderer.startColor = circleColor;
+        lineRenderer.endColor = circleColor;
 
         float angleIncrement = 2f * Mathf.PI / segments;
 
         for (int i = 0; i <= segments; i++)
         {
+     
             float angle = i * angleIncrement;
             float x = Mathf.Cos(angle) * radius;
             float y = Mathf.Sin(angle) * radius;
@@ -48,4 +46,11 @@ public class ShowRange : MonoBehaviour
             lineRenderer.SetPosition(i, pos);
         }
     }
+
+    public void ClearCircle()
+    {
+        // lineRenderer.positionCount = 0;
+    }
+
+    
 }

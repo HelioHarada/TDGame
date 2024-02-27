@@ -20,7 +20,7 @@ public class BuildManager : MonoBehaviour
 
     public void SetTurrent(int _selecedTurrent)
     {
-        Debug.Log(_selecedTurrent);
+   
         selectedTower = _selecedTurrent;
     }
 

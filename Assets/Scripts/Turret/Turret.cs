@@ -11,7 +11,7 @@ public class Turrent : MonoBehaviour
     [SerializeField] LayerMask enemyMask;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
-    private ShowRange showRange;
+    [SerializeField] private ShowRange showRange;
    
 
     [Header("atrribute")]
@@ -28,17 +28,18 @@ public class Turrent : MonoBehaviour
 
 
 
-   
-
-    void Start()
+    void Awake()
     {
-        //  showRange = GameObject.Find("ShowRange").GetComponent<ShowRange>();
-    
+         showRange = GetComponent<ShowRange>();
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
+         
+    
         if(target == null)
         {
             FindTartget();
@@ -60,6 +61,7 @@ public class Turrent : MonoBehaviour
         }
         
         
+       
     }
 
     private bool CheckTargeRange()
@@ -134,4 +136,30 @@ public class Turrent : MonoBehaviour
         Handles.color = Color.green;
         Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
     }
+
+   private void OnMouseEnter()
+    {        
+        Debug.Log(showRange);
+        
+        showRange.DrawCircle(transform.position,targetingRange);
+    }
+
+    // private void OnMouseDown()
+    // {
+    //     showRange.DrawCircle(transform.position,targetingRange);
+    // }
+
+    // private void OnMouseUp()
+    // {
+    //      showRange.ClearCircle();
+    // }
+
+    private void OnMouseExit()
+    {        
+        Debug.Log(showRange);
+        
+        showRange.ClearCircle();
+    }
+    
+
 }
