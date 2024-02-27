@@ -8,7 +8,8 @@ public class BuildManager : MonoBehaviour
     public static BuildManager main;
 
     [Header("References")]
-    [SerializeField] private GameObject[] towerPrefabs;
+    // [SerializeField] private GameObject[] towerPrefabs;
+    [SerializeField]  private ConfigTurrent[] turrents;
 
     private int selectedTower = 0;
   
@@ -17,8 +18,16 @@ public class BuildManager : MonoBehaviour
         main = this;
     }
 
-    public GameObject GetSelectedTower()
+    public void SetTurrent(int _selecedTurrent)
     {
-        return towerPrefabs[selectedTower];
+        Debug.Log(_selecedTurrent);
+        selectedTower = _selecedTurrent;
     }
+
+    public ConfigTurrent GetSelectedTower()
+    {
+        return turrents[selectedTower];
+    }
+
+   
 }

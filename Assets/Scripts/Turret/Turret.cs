@@ -4,18 +4,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Turrent : MonoBehaviour
 {
     [Header("Reference")]
     [SerializeField] private Transform turrentRotationPoint;
     [SerializeField] LayerMask enemyMask;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
+    private ShowRange showRange;
+   
 
     [Header("atrribute")]
     [SerializeField] private float targetingRange = 3f;
     [SerializeField] private float rotationSpeed = 50f;
     [SerializeField] private float fireRate = 1f; // bullets per second
+    [SerializeField] private int dmg = 1; // bullets per second
+    [SerializeField] private float bulletSpeed = 1f; // bullets per second
 
     // Start is called before the first frame update
 
@@ -23,9 +27,13 @@ public class NewBehaviourScript : MonoBehaviour
     private float TimeUntllFire;
 
 
+
+   
+
     void Start()
     {
-        
+        //  showRange = GameObject.Find("ShowRange").GetComponent<ShowRange>();
+    
     }
 
     // Update is called once per frame
@@ -50,6 +58,8 @@ public class NewBehaviourScript : MonoBehaviour
                 TimeUntllFire = 0;
             }
         }
+        
+        
     }
 
     private bool CheckTargeRange()
@@ -115,7 +125,7 @@ public class NewBehaviourScript : MonoBehaviour
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
         Bullet bulletScript = bulletObj.GetComponent<Bullet>();
         // Config bullet
-        // bulletScript.SetBulletConfig(20f, 5);
+        bulletScript.SetBulletConfig(bulletSpeed, dmg);
         bulletScript.SetTarget(target);
     }
 

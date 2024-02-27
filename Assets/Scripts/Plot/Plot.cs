@@ -33,8 +33,18 @@ public class Plot : MonoBehaviour
     private void OnMouseDown(){
         if(tower != null) return;
 
-        GameObject towerToBuild = BuildManager.main.GetSelectedTower();
-        tower = Instantiate(towerToBuild, transform.position, Quaternion.identity);
+        ConfigTurrent towerToBuild = BuildManager.main.GetSelectedTower();
+
+        if(towerToBuild.cost >= LevelManager.main.money)
+        {
+            Debug.Log("No Souls to create a tower");
+            return;
+        }
+
+        LevelManager.main.SpendMoney(towerToBuild.cost);
+        tower = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
+
+       
     }
 
   

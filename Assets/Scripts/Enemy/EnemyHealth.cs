@@ -7,6 +7,8 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] private int hitPoint = 2;
+    [SerializeField]private int valueMoney = 20;
+
     private bool isDestroyed = false;
     // Start is called before the first frame update
 
@@ -16,6 +18,7 @@ public class EnemyHealth : MonoBehaviour
 
         if(hitPoint <= 0 && !isDestroyed){
             EnemySpawn.onEnemyDestroy.Invoke();
+            LevelManager.main.IncreaseMoney(valueMoney);
             isDestroyed = true;
             Destroy(gameObject);
         }

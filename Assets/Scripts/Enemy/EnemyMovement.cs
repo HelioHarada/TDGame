@@ -1,12 +1,14 @@
 
 using UnityEngine;
 
-public class EnemyMovemnt : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
      
-     public float speed = 10f;
+     [SerializeField]public float speed = 10f;
+    [SerializeField] public float initialSpeed;
      private Transform target;
      private int index = 0;
+     
     [SerializeField] private Rigidbody2D rb;
 
 
@@ -15,6 +17,7 @@ public class EnemyMovemnt : MonoBehaviour
     {
         target = LevelManager.main.path[index];
         rb = GetComponent<Rigidbody2D>();
+        initialSpeed = speed;
     }
 
     // Update is called once per frame
@@ -47,5 +50,15 @@ public class EnemyMovemnt : MonoBehaviour
        
         rb.velocity = direction * speed;
   
+    }
+
+    public void SetSpeed(float slowPercentSpeed)
+    {
+        speed = speed* slowPercentSpeed;
+    }
+
+        public void ResetSpeed()
+    {
+        speed = initialSpeed;
     }
 }
