@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private float enemyPerSencond = 0.5f;
     [SerializeField] private float timeBeteweenWaves = 5f;
     [SerializeField] private float dificultScale = 0.75f;
+    [SerializeField] private float enemiesPerSecondCap = 15f;
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
@@ -23,6 +25,7 @@ public class EnemySpawn : MonoBehaviour
     private float timeSinceLastSpawn;
     [SerializeField] private int enemiesAlive;
     private int enemiesLeftToSpawn;
+    private float eps; //Enemy per second;
     private bool isSpawning = false;
 
     private void Awake()
@@ -40,7 +43,7 @@ public class EnemySpawn : MonoBehaviour
         
         timeSinceLastSpawn += Time.deltaTime;
 
-        if(timeSinceLastSpawn >= (1f /enemyPerSencond ) && enemiesLeftToSpawn > 0)
+        if(timeSinceLastSpawn >= (1f / eps ) && enemiesLeftToSpawn > 0)
         {
             enemiesLeftToSpawn--;
             enemiesAlive++;
@@ -59,6 +62,7 @@ public class EnemySpawn : MonoBehaviour
         yield return new WaitForSeconds(timeBeteweenWaves);
         isSpawning = true;
         enemiesLeftToSpawn = EnemysPerWaves();
+        eps = EnemysPerSecond();
     }
 
     private void EndWave()
@@ -83,24 +87,28 @@ public class EnemySpawn : MonoBehaviour
         enemiesAlive--;
     }
 
+ 
+
     private void SpawnEnemy()
-    {
-        GameObject prefabToSpawn = enemyPrefabs[0];
+    { 
+       
+        int index = UnityEngine.Random.Range(0, enemyPrefabs.Length);
+
+        GameObject prefabToSpawn = enemyPrefabs[index];
+
         Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
-        // if(Random.RandomRange(0f,1f) >= 0.5f)
-        // {
-        //     GameObject prefabToSpawn = enemyPrefabs[0];
-        //     Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
-        // }else{
-        //     GameObject prefabToSpawn = enemyPrefabs[1];
-        //     Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
-        // } 
+
 
     }
 
     private int EnemysPerWaves()
     {
         return baseEnemeis = Mathf.RoundToInt(baseEnemeis * Mathf.Pow(currentWave, dificultScale));
+    }
+
+    private float EnemysPerSecond()
+    {
+        return  Mathf.Clamp(enemyPerSencond * Mathf.Pow(currentWave, dificultScale), 0f,enemiesPerSecondCap);
     }
 
     

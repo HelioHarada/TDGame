@@ -49,7 +49,7 @@ public class ShowRange : MonoBehaviour
 
     public void ClearCircle()
     {
-        // lineRenderer.positionCount = 0;
+        lineRenderer.positionCount = 0;
     }
 
     

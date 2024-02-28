@@ -2770,6 +2770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b658dcfd5fb38ca4ebd65130e8f6a2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  costUI: {fileID: 0}
 --- !u!114 &388597206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8347,10 +8348,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 3579892085340479879, guid: b3e14392453f34646af269dbc904b103, type: 3}
+  - {fileID: 3579892085340479879, guid: fd6ffa75824600e4c86cf4bf715a2f55, type: 3}
   baseEnemeis: 8
   enemyPerSencond: 1
   timeBeteweenWaves: 2
   dificultScale: 0.75
+  enemiesPerSecondCap: 15
   enemiesAlive: 0
 --- !u!114 &1076127001
 MonoBehaviour:
@@ -9649,6 +9652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b658dcfd5fb38ca4ebd65130e8f6a2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  costUI: {fileID: 0}
 --- !u!4 &1310480063 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3590465265567139333, guid: da1390ff3e0bcfb48b102c558d102b0e, type: 3}
@@ -9995,7 +9999,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1348241940}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1076127001}
+        m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
+        m_MethodName: SetTurrent
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1348241940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11267,8 +11283,8 @@ GameObject:
   - component: {fileID: 1533524979}
   - component: {fileID: 1533524981}
   - component: {fileID: 1533524980}
-  - component: {fileID: 1533524982}
   - component: {fileID: 1533524983}
+  - component: {fileID: 1533524984}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -11338,20 +11354,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533524978}
   m_CullTransparentMesh: 1
---- !u!114 &1533524982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533524978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de353f3c02d8eb647ace67d69a0303db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoneyUI: {fileID: 399766838}
-  anim: {fileID: 0}
 --- !u!95 &1533524983
 Animator:
   serializedVersion: 5
@@ -11373,6 +11375,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1533524984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533524978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de353f3c02d8eb647ace67d69a0303db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoneyUI: {fileID: 399766838}
+  anim: {fileID: 0}
 --- !u!4 &1535028445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3590465265567139333, guid: da1390ff3e0bcfb48b102c558d102b0e, type: 3}
@@ -12051,7 +12067,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1533524982}
+      - m_Target: {fileID: 1533524984}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: ToggleMenu
         m_Mode: 1
@@ -15265,6 +15281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b658dcfd5fb38ca4ebd65130e8f6a2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  costUI: {fileID: 0}
 --- !u!114 &2121549632
 MonoBehaviour:
   m_ObjectHideFlags: 0

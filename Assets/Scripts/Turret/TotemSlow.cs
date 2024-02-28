@@ -8,6 +8,7 @@ public class TotemSlow : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private Transform turrentRotationPoint;
     [SerializeField] LayerMask enemyMask;
+    [SerializeField] private ShowRange showRange;
  
     [Header("atrribute")]
     [SerializeField] private float targetingRange = 3f;
@@ -24,20 +25,17 @@ public class TotemSlow : MonoBehaviour
 
      private float TimeUntllFire;
 
-    void Start()
+
+    void Awake()
     {
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.startColor = circleColor;
-        lineRenderer.endColor = circleColor;
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
-        
+         showRange = GetComponent<ShowRange>();
     }
+
 
     void Update()
     {
 
-        DrawCircle(transform.position, targetingRange, numSegments);
+    
         
         TimeUntllFire += Time.deltaTime;
 
@@ -78,22 +76,18 @@ public class TotemSlow : MonoBehaviour
         Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
     }
 
-    private void DrawCircle(Vector3 center, float radius, int segments)
-    {
-        lineRenderer.positionCount = segments + 1;
 
-        float angleIncrement = 2f * Mathf.PI / segments;
-
-        for (int i = 0; i <= segments; i++)
-        {
-            float angle = i * angleIncrement;
-            float x = Mathf.Cos(angle) * radius;
-            float y = Mathf.Sin(angle) * radius;
-            Vector3 pos = center + new Vector3(x, y, 0f);
-            lineRenderer.SetPosition(i, pos);
-        }
+   private void OnMouseEnter()
+    {        
+        
+        showRange.DrawCircle(transform.position,targetingRange);
     }
 
+    private void OnMouseExit()
+    {        
+    
+        showRange.ClearCircle();
+    }
 
 
 }

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 73602213229474417}
   - component: {fileID: -8330628731412016}
   - component: {fileID: 9134574445607632492}
+  - component: {fileID: -2324211431823161485}
   m_Layer: 0
   m_Name: TotemIce
   m_TagString: Untagged
@@ -84,11 +85,12 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
+  showRange: {fileID: 0}
   targetingRange: 2
-  fireRate: 10
+  fireRate: 4
   dmg: 1
-  slowSpeed: 0.9
-  SlowDuration: 5
+  slowSpeed: 0.7
+  SlowDuration: 1
   numSegments: 64
   circleColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!61 &9134574445607632492
@@ -136,6 +138,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-2324211431823161485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324727748372950740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d458b3a261081a429a52407942e4bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleColor: {r: 0, g: 0, b: 1, a: 1}
+  targetingRange: 1
+  numSegments: 64
 --- !u!1 &3412342414773491448
 GameObject:
   m_ObjectHideFlags: 0

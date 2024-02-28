@@ -144,6 +144,12 @@ public class Turrent : MonoBehaviour
         showRange.DrawCircle(transform.position,targetingRange);
     }
 
+    private void OnMouseExit()
+    {        
+    
+        showRange.ClearCircle();
+    }
+    
     // private void OnMouseDown()
     // {
     //     showRange.DrawCircle(transform.position,targetingRange);
@@ -154,12 +160,7 @@ public class Turrent : MonoBehaviour
     //      showRange.ClearCircle();
     // }
 
-    private void OnMouseExit()
-    {        
-        Debug.Log(showRange);
-        
-        showRange.ClearCircle();
-    }
+
     
 
 }
